@@ -1,0 +1,194 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    min-height: 100vh;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    font-family: sans-serif;
+    background-color: #f0f0f0;
+    background-image: url("orqa-fon.avif");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+}
+h1{
+    margin-bottom: 1em;
+    text-align: center;
+}
+#dir-sign {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    position: relative;
+    padding-top: 2.5em;
+    padding-bottom: 7.5em;
+}
+#dir-sign::before,
+#dir-sign::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+}
+#dir-sign::before{
+    width: 1.5em;
+    height: 100%;
+    border-radius:  1em 1em 0.25em 0.25em;
+    top: 0;
+    transform: translateX(-50%);
+    background-color: rgb(134, 65, 19);
+    background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.25),
+    transparent 30%,
+    rgba(0, 0, 0, 0.25) 60% 80%,
+    transparent
+    );
+}
+#dir-sign::after{
+    width: 10em;
+    height: 1em;
+    background-image: radial-gradient(rgba(0,0,0, 1) 0em,
+    rgba(0,0,0, 0) 1.5em),
+    radial-gradient(rgba(0,0,0, 0.5)1em,
+    rgba(0, 0, 0, 0)70%);
+    bottom: 0;
+    transform: translate(-50%,50%);
+    border-radius: 50%;
+    z-index: -1;
+}
+#dir-sign li{
+    display: flex;
+    align-items: center;
+    background: var(--signColor);
+    background-image: var(--woodTexture);
+    background-size: cover;
+    color: var(--textColor);
+    counter-increment: step;
+    position: relative;
+    --shadow:drop-shadow(0.025 0.025 0.05 rgba(0, 0, 0, 0.5));
+
+}
+#dir-sign li:nth-child(odd) {
+    padding: 0.5em 1.5em 0.5em 2em;
+    flex-direction: row;
+    clip-path: polygon(
+    2em 0,
+    100% 0,
+    calc(100% - 1em)50%,
+    100% 100%,
+    2em 100%,
+    0 50%
+    );
+    left: 50%;
+    transform: translateX(calc(-100% + 5em));
+    align-self: flex-start;
+}
+#dir-sign li:nth-child(even) {
+    padding: 0.5em 2em 0.5em 1.5em;
+    flex-direction: row-reverse;
+    clip-path: polygon(
+    0 0,
+    calc(100% - 2em) 0,
+    100% 50%,
+    calc(100% - 2em) 100%,
+    0 100%,
+    1em 50%
+    );
+    right: 50%;
+    transform: translateX(calc(100% - 5em));
+    align-self: flex-end;
+    padding: 0.5em 2em 0.5em 1.5em;
+}
+
+#dir-sign li > * {
+    filter: var(--shadow);
+}
+
+#dir-sign li::after {
+    content: "0" counter(step);
+    width: 2em;
+    height: 2em;
+    border: 0.05em solid var(--textColor);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    filter: var(--shadow);
+}
+
+#dir-sign li:nth-child(odd)::after {
+    margin-left: 3em;
+}
+
+#dir-sign li:nth-child(even)::after{
+    margin-right: 3em;
+}
+
+#dir-sign li .icon {
+    width: 2em;
+    height: 2em;
+    display: grid;
+    place-content: center;
+    font-size: 0.9em;
+}
+
+#dir-sign li:nth-child(odd) .icon {
+    margin-right: 1em;
+}
+
+#dir-sign li:nth-child(even) .icon {
+    margin-left: 1em;
+}
+#dir-sign li .icon i{
+    font-size: 1.5em;
+}
+#dir-sign li .text{
+    flex: 1;
+    position: relative;
+}
+
+#dir-sign li .text::before,
+#dir-sign li .text::after {
+    content: "";
+    width: 1em;
+    height: 1em;
+    background-color: rgb(180, 180, 180);
+    background-image: linear-gradient(
+    to right,
+    transparent 40%,
+    rgba(0,0,0, 0.25) 40% 60%,
+    transparent 60%
+    );
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    --scale: scale(0.3);
+}
+
+#dir-sign li .text::before {
+    transform: translateY(calc(-50% + 0.75em)) var(--scale)
+    rotate(45deg);
+
+}
+#dir-sign li .text::after{
+    transform: translateY(calc(-50% - 0.75em)) var(--scale)
+    rotate(135deg);
+}
+#dir-sign li:nth-child(odd) .text::before,
+#dir-sign li:nth-child(odd) .text::after{
+    right: -2em;
+}
+#dir-sign li:nth-child(even) .text::before,
+#dir-sign li:nth-child(even) .text::after{
+    left: -2em;
+}
+
+
